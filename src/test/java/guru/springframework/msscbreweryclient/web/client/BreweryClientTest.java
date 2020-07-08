@@ -24,7 +24,7 @@ public class BreweryClientTest {
 
   @Test
   void createNewBeer_successfulTest() {
-    //given
+    // given
     BeerDto beerDto = BeerDto.builder().beerName("New Beer").build();
 
     URI uri = client.createNewBeer(beerDto);
@@ -32,7 +32,15 @@ public class BreweryClientTest {
     assertNotNull(uri);
 
     assertNotNull(uri.getPath().contains(BreweryClient.BEER_API_PATH));
+  }
 
+  @Test
+  void updateBeerById_successfulTest() {
+    // given
+    UUID beerId = UUID.randomUUID();
 
+    BeerDto beerDto = BeerDto.builder().id(beerId).beerName("New Beer").build();
+
+    client.updateBeerById(beerId, beerDto);
   }
 }
